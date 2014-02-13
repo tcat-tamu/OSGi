@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: OSGi Services Util
+Bundle-SymbolicName: edu.tamu.tcat.osgi.services.util
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Export-Package: edu.tamu.tcat.osgi.services.util
+Import-Package: org.osgi.framework
+Bundle-ActivationPolicy: lazy
