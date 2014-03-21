@@ -13,30 +13,49 @@ package edu.tamu.tcat.osgi.services.util;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
+/**
+ * A base implementation to use for bundle activators. This exposes access to
+ * framework/system properties and has an accessor for the current {@link BundleContext}
+ * which can be used to look up OSGi services.
+ */
 public class ActivatorBase implements BundleActivator
 {
-   private BundleContext context;
-   private static ActivatorBase instance;
+   /**
+    * @since 1.1
+    */
+   protected BundleContext context;
    
+   /**
+    * @since 1.1
+    */
+   protected static ActivatorBase instance;
+
    public ActivatorBase()
    {
       instance = this;
    }
-   
-   public BundleContext getContext() {
+
+   public BundleContext getContext()
+   {
       return context;
    }
 
-   public void start(BundleContext bundleContext) throws Exception {
+   @Override
+   public void start(BundleContext bundleContext) throws Exception
+   {
       context = bundleContext;
    }
 
-   public void stop(BundleContext bundleContext) throws Exception {
+   @Override
+   public void stop(BundleContext bundleContext) throws Exception
+   {
       context = null;
    }
-   
-   /* We get all properties from the context in case they are defined as bundle properties
-    *  (will fallback to system properties). See context.getProperty(). */
+
+   /*
+    * Access all properties through the context in case they are defined as bundle properties
+    * (will fallback to system properties). See context.getProperty().
+    */
    public String getProperty(String name, String defaultValue)
    {
       String value = getContext().getProperty(name);
