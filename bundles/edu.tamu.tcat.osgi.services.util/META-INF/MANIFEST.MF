@@ -2,8 +2,8 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: OSGi Services Util
 Bundle-SymbolicName: edu.tamu.tcat.osgi.services.util
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 1.1.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Export-Package: edu.tamu.tcat.osgi.services.util;version="1.0.0"
+Export-Package: edu.tamu.tcat.osgi.services.util;version="1.1.0"
 Import-Package: org.osgi.framework;version="[1.5.0,2.0.0)"
-Bundle-ActivationPolicy: lazy
+Bundle-Vendor: Texas A&M Engineering Experiment Station
