@@ -31,6 +31,7 @@
     <module>citd.osgi.util/releng/edu.tamu.tcat.osgi.sdk.feature</module>
     
     <module>citd.osgi.util/bundles/edu.tamu.tcat.osgi.services.util</module>
+    <module>citd.osgi.util/bundles/edu.tamu.tcat.osgi.config</module>
   </modules>
 
   <repositories>
