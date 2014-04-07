@@ -17,7 +17,7 @@
   <properties>
     <tycho-groupid>org.eclipse.tycho</tycho-groupid>
     <tycho-version>0.19.0</tycho-version>
-    <tycho-extras-version>0.19.0</tycho-extras-version>
+    <tycho-extras-version>${tycho-version}</tycho-extras-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <maven-plugins-groupid>org.apache.maven.plugins</maven-plugins-groupid>
@@ -35,7 +35,6 @@
   </modules>
 
   <repositories>
-    <!-- Provides access to org.eclipse.core.runtime -->
     <repository>
       <id>Eclipse Platform</id>
       <layout>p2</layout>
