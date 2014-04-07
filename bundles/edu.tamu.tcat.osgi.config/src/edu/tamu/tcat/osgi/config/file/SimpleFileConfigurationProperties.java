@@ -50,8 +50,6 @@ import edu.tamu.tcat.osgi.config.ConfigurationProperties;
  * <p>
  * This implementation also provides some API for manually setting and managing properties not
  * defined by a config file.
- * 
- * @since 1.2
  */
 public class SimpleFileConfigurationProperties implements ConfigurationProperties
 {

@@ -13,8 +13,6 @@ package edu.tamu.tcat.osgi.config;
 
 /**
  * A service API to access some scope of configuration properties.
- * 
- * @since 1.2
  */
 public interface ConfigurationProperties
 {
