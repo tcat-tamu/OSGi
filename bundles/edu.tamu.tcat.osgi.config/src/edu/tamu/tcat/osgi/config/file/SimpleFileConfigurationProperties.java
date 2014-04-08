@@ -153,29 +153,41 @@ public class SimpleFileConfigurationProperties implements ConfigurationPropertie
       
       try
       {
-         if (Byte.class.isAssignableFrom(type)){
-            return (T)Byte.valueOf(str);
-         }
-         if (Short.class.isAssignableFrom(type)){
-            return (T)Short.valueOf(str);
-         }
-         if (Integer.class.isAssignableFrom(type)){
-            return (T)Integer.valueOf(str);
-         }
-         if (Long.class.isAssignableFrom(type)){
-            return (T)Long.valueOf(str);
-         }
-         if (Float.class.isAssignableFrom(type)){
-            return (T)Float.valueOf(str);
-         }
-         if (Double.class.isAssignableFrom(type)){
-            return (T)Double.valueOf(str);
+         if (Number.class.isAssignableFrom(type))
+         {
+            if (Byte.class.isAssignableFrom(type))
+               return (T)Byte.valueOf(str);
+            if (Short.class.isAssignableFrom(type))
+               return (T)Short.valueOf(str);
+            if (Integer.class.isAssignableFrom(type))
+               return (T)Integer.valueOf(str);
+            if (Long.class.isAssignableFrom(type))
+               return (T)Long.valueOf(str);
+            if (Float.class.isAssignableFrom(type))
+               return (T)Float.valueOf(str);
+            if (Double.class.isAssignableFrom(type))
+               return (T)Double.valueOf(str);
+            
+            throw new IllegalStateException("Unhandled numeric type ["+type+"] for property ["+name+"] value ["+str+"]");
          }
       }
       catch (NumberFormatException e)
       {
          throw new IllegalStateException("Failed converting property ["+name+"] value ["+str+"] to primitive "+type, e);
       }
+      
+      try
+      {
+         if (Path.class.isAssignableFrom(type))
+         {
+            return (T)Paths.get(str);
+         }
+      }
+      catch (Exception e)
+      {
+         throw new IllegalStateException("Failed converting property ["+name+"] value ["+str+"] to OS file system path "+type, e);
+      }
+      
       throw new IllegalStateException("Unhandled type: " + type.getCanonicalName());
    }
    
