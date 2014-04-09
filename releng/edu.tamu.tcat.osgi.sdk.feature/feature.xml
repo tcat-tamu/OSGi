@@ -30,7 +30,7 @@ Proprietary information, not for redistribution.
          id="edu.tamu.tcat.osgi.services.util"
          download-size="0"
          install-size="0"
-         version="1.1.0.qualifier"
+         version="1.2.0.qualifier"
          unpack="false"/>
 
    <plugin
