@@ -37,7 +37,7 @@ import org.osgi.framework.BundleContext;
  * The pattern to use should be to declare a static field, a constructor which assigns
  * 'this' to that field, and a static accessor for the field:
  * <pre>
-   private Activator instance;
+   private static Activator instance;
    public Activator() {
       instance = this;
    }
