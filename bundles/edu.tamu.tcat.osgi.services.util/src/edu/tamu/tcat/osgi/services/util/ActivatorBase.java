@@ -17,6 +17,34 @@ import org.osgi.framework.BundleContext;
  * A base implementation to use for bundle activators. This exposes access to
  * framework/system properties and has an accessor for the current {@link BundleContext}
  * which can be used to look up OSGi services.
+ * <p>
+ * This implementation contains no static fields or methods because they are inherently
+ * unsafe in this particular environment of bundle activators; i.e. a static field would
+ * be a JVM singleton if multiple activators extend from this same base type.
+ */
+/*
+ * This base class does not maintain any static 'instance' fields.
+ * The problem is that subclasses must each define a static accessor for 'instance' not
+ * only to avoid warnings about static access to the wrong class but also because the static
+ * instance in the base class *is a singleton for the JVM* and is overwritten by the last
+ * bundle to load that uses this as a base class.
+ * 
+ * If a subclass 'Activator' - used internally in a bundle in which it is defined - needs
+ * a static accessor to return itslef, it must maintain that static field to refer to
+ * the correct instance and a static accessor must be defined explicitly on any subclass
+ * on which this functionality is necessary.
+ * 
+ * The pattern to use should be to declare a static field, a constructor which assigns
+ * 'this' to that field, and a static accessor for the field:
+ * <pre>
+   private Activator instance;
+   public Activator() {
+      instance = this;
+   }
+   public static Activator getDefault() {
+      return instance;
+   }
+ * </pre>
  */
 public class ActivatorBase implements BundleActivator
 {
@@ -25,16 +53,6 @@ public class ActivatorBase implements BundleActivator
     */
    protected BundleContext context;
    
-   /**
-    * @since 1.1
-    */
-   protected static ActivatorBase instance;
-
-   public ActivatorBase()
-   {
-      instance = this;
-   }
-
    public BundleContext getContext()
    {
       return context;
@@ -60,28 +78,5 @@ public class ActivatorBase implements BundleActivator
    {
       String value = getContext().getProperty(name);
       return (value != null) ? value : defaultValue;
-   }
-
-   /*
-    * This method is not public. The problem is that subclasses must each define a static
-    * accessor for 'instance' to avoid warnings about static access to the wrong class.
-    * 
-    * If a subclass 'Activator' - used internally in a bundle in which it is defined - is
-    * invoked by 'Activator.getDefault()' intending to invoke this method (which is static in its
-    * superclass), the method is not actually on 'Activator', but on this class, 'ActivatorBase'.
-    * To alleviate this problem, the static accessor must be defined explicitly on any subclass
-    * on which this functionality is necessary.
-    * 
-    * This method is left protected rather than being removed to retain this notice, and also to
-    * allow subclasses to invoke it in implementing their own 'getDefault()' even though 'instance'
-    * is 'protected' and directly available to subclasses.
-    * 
-    * In a subclass implementation, the declared return type may either be this type,
-    * 'ActivatorBase', or that specific activator sub-type, which allows access to further methods
-    * defined in the sub-type.
-    */
-   protected static ActivatorBase getDefault()
-   {
-      return instance;
    }
 }
