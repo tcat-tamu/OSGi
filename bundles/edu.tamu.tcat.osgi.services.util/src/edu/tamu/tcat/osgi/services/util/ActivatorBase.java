@@ -62,7 +62,25 @@ public class ActivatorBase implements BundleActivator
       return (value != null) ? value : defaultValue;
    }
 
-   public static ActivatorBase getDefault()
+   /*
+    * This method is not public. The problem is that subclasses must each define a static
+    * accessor for 'instance' to avoid warnings about static access to the wrong class.
+    * 
+    * If a subclass 'Activator' - used internally in a bundle in which it is defined - is
+    * invoked by 'Activator.getDefault()' intending to invoke this method (which is static in its
+    * superclass), the method is not actually on 'Activator', but on this class, 'ActivatorBase'.
+    * To alleviate this problem, the static accessor must be defined explicitly on any subclass
+    * on which this functionality is necessary.
+    * 
+    * This method is left protected rather than being removed to retain this notice, and also to
+    * allow subclasses to invoke it in implementing their own 'getDefault()' even though 'instance'
+    * is 'protected' and directly available to subclasses.
+    * 
+    * In a subclass implementation, the declared return type may either be this type,
+    * 'ActivatorBase', or that specific activator sub-type, which allows access to further methods
+    * defined in the sub-type.
+    */
+   protected static ActivatorBase getDefault()
    {
       return instance;
    }
