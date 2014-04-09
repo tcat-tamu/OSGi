@@ -17,7 +17,7 @@
   <properties>
     <tycho-groupid>org.eclipse.tycho</tycho-groupid>
     <tycho-version>0.19.0</tycho-version>
-    <tycho-extras-version>0.19.0</tycho-extras-version>
+    <tycho-extras-version>${tycho-version}</tycho-extras-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <maven-plugins-groupid>org.apache.maven.plugins</maven-plugins-groupid>
@@ -31,10 +31,10 @@
     <module>citd.osgi.util/releng/edu.tamu.tcat.osgi.sdk.feature</module>
     
     <module>citd.osgi.util/bundles/edu.tamu.tcat.osgi.services.util</module>
+    <module>citd.osgi.util/bundles/edu.tamu.tcat.osgi.config</module>
   </modules>
 
   <repositories>
-    <!-- Provides access to org.eclipse.core.runtime -->
     <repository>
       <id>Eclipse Platform</id>
       <layout>p2</layout>
@@ -62,6 +62,23 @@
               <arch>x86</arch>
             </environment>
           </environments>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>${tycho-groupid}</groupId>
+        <artifactId>tycho-packaging-plugin</artifactId>
+        <version>${tycho-version}</version>
+        <dependencies>
+          <dependency>
+            <groupId>org.eclipse.tycho.extras</groupId>
+            <artifactId>tycho-buildtimestamp-jgit</artifactId>
+            <version>${tycho-extras-version}</version>
+          </dependency>
+        </dependencies>
+        <configuration>
+          <timestampProvider>jgit</timestampProvider>
+          <format>yyyyMMdd-HHmm</format>
+          <jgit.dirtyWorkingTree>warning</jgit.dirtyWorkingTree>
         </configuration>
       </plugin>
       <plugin>
