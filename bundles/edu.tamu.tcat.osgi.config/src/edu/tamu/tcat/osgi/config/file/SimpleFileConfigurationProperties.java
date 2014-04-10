@@ -26,9 +26,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.osgi.framework.BundleContext;
-import org.osgi.framework.FrameworkUtil;
 
 import edu.tamu.tcat.osgi.config.ConfigurationProperties;
+import edu.tamu.tcat.osgi.config.internal.Activator;
 
 /**
  * An implementation of the {@link ConfigurationProperties} service API.
@@ -86,7 +86,7 @@ public class SimpleFileConfigurationProperties implements ConfigurationPropertie
    {
       try
       {
-         BundleContext bc = FrameworkUtil.getBundle(getClass()).getBundleContext();
+         BundleContext bc = Activator.getDefault().getContext();
          String propsFileStr = bc.getProperty(filePropName);
          if (propsFileStr == null)
             throw new IllegalStateException("Value of '"+filePropName+"' was ["+propsFileStr+"]");
