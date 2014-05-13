@@ -14,6 +14,7 @@ package edu.tamu.tcat.osgi.config.file;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -186,6 +187,18 @@ public class SimpleFileConfigurationProperties implements ConfigurationPropertie
       catch (Exception e)
       {
          throw new IllegalStateException("Failed converting property ["+name+"] value ["+str+"] to OS file system path "+type, e);
+      }
+      
+      try
+      {
+         if (URI.class.isAssignableFrom(type))
+         {
+            return (T)new URI(str);
+         }
+      }
+      catch (Exception e)
+      {
+         throw new IllegalStateException("Failed converting property ["+name+"] value ["+str+"] to URI "+type, e);
       }
       
       throw new IllegalStateException("Unhandled type: " + type.getCanonicalName());
