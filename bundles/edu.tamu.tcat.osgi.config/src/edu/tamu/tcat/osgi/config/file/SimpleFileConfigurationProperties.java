@@ -171,6 +171,9 @@ public class SimpleFileConfigurationProperties implements ConfigurationPropertie
             
             throw new IllegalStateException("Unhandled numeric type ["+type+"] for property ["+name+"] value ["+str+"]");
          }
+         
+         if (Boolean.class.isAssignableFrom(type))
+            return (T)Boolean.valueOf(str);
       }
       catch (NumberFormatException e)
       {
