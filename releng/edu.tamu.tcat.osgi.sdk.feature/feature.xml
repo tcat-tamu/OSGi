@@ -2,7 +2,7 @@
 <feature
       id="edu.tamu.tcat.osgi.sdk.feature"
       label="CITD OSGI Utilities"
-      version="1.1.3.qualifier"
+      version="1.1.4.qualifier"
       provider-name="Texas A&amp;M Engineering Experiment Station">
 
    <description>
@@ -44,7 +44,7 @@ Proprietary information, not for redistribution.
          id="edu.tamu.tcat.osgi.config"
          download-size="0"
          install-size="0"
-         version="1.0.2.qualifier"
+         version="1.0.3.qualifier"
          unpack="false"/>
 
    <plugin

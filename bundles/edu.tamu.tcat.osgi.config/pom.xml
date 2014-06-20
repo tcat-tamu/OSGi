@@ -12,7 +12,7 @@
   </parent>
 
   <artifactId>edu.tamu.tcat.osgi.config</artifactId>
-  <version>1.0.2-SNAPSHOT</version>
+  <version>1.0.3-SNAPSHOT</version>
   <packaging>eclipse-plugin</packaging>
 
 </project>
