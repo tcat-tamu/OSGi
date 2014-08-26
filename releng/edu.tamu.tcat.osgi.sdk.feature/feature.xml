@@ -1,29 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="edu.tamu.tcat.osgi.sdk.feature"
-      label="CITD OSGI Utilities"
+      label="OSGI Utilities"
       version="1.1.4.qualifier"
       provider-name="Texas A&amp;M Engineering Experiment Station">
 
    <description>
-      This feature is used to expose the plugins built into the CITD OSGI Utilities Repository
+      This feature is used to expose the plugins built into the OSGI Utilities Repository
    </description>
 
    <copyright>
-      Copyright © 2010-14, All Rights Reserved.
+      Copyright © 2014, All Rights Reserved.
 Texas Center for Applied Technology
-Texas A&amp;M Engineering Experiment Station and
-National Center for Foreign Animal and Zoonotic Disease Defense
-Texas A&amp;M AgriLife Research
-The Texas A&amp;M University System
-College Station, Texas, USA 77843
-
-Use is granted only to authorized licensee.
-Proprietary information, not for redistribution.
+Texas A&amp;M Engineering Experiment Station
+1470 William D. Fitch Parkway
+College Station, Texas, USA 77845
    </copyright>
 
-   <license url="http://www.example.com/license">
-      [Enter License Description here.]
+   <license url="http://www.apache.org/licenses/LICENSE-2.0">
+      Copyright 2014 Texas A&amp;M Engineering Experiment Station
+
+Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
    </license>
 
    <plugin
