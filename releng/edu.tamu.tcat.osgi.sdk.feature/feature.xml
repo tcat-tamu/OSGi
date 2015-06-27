@@ -2,7 +2,7 @@
 <feature
       id="edu.tamu.tcat.osgi.sdk.feature"
       label="OSGI Utilities"
-      version="1.1.4.qualifier"
+      version="1.1.5.qualifier"
       provider-name="Texas A&amp;M Engineering Experiment Station">
 
    <description>
