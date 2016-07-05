@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
   
   <groupId>edu.tamu.tcat</groupId>
-  <artifactId>osgi</artifactId>
+  <artifactId>oss.osgi.util</artifactId>
   <version>1</version>
   <packaging>pom</packaging>
   
@@ -32,7 +32,7 @@
   
   <properties>
     <tycho-groupid>org.eclipse.tycho</tycho-groupid>
-    <tycho-version>0.22.0</tycho-version>
+    <tycho-version>0.25.0</tycho-version>
     <tycho-extras-version>${tycho-version}</tycho-extras-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -43,11 +43,11 @@
   </properties>
   
   <modules>
-    <module>citd.osgi.util/releng/edu.tamu.tcat.osgi.repo.product</module>
-    <module>citd.osgi.util/releng/edu.tamu.tcat.osgi.sdk.feature</module>
-    
-    <module>citd.osgi.util/bundles/edu.tamu.tcat.osgi.services.util</module>
-    <module>citd.osgi.util/bundles/edu.tamu.tcat.osgi.config</module>
+    <module>releng/edu.tamu.tcat.osgi.repo.product</module>
+    <module>releng/edu.tamu.tcat.osgi.sdk.feature</module>
+            
+    <module>bundles/edu.tamu.tcat.osgi.services.util</module>
+    <module>bundles/edu.tamu.tcat.osgi.config</module>
   </modules>
 
   <repositories>
