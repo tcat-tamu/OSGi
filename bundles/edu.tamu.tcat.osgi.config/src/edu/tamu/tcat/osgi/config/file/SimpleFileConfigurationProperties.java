@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2015 Texas A&M Engineering Experiment Station
+ * Copyright 2014-2019 Texas A&M Engineering Experiment Station
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,9 +38,10 @@ import edu.tamu.tcat.osgi.config.internal.Activator;
 
 /**
  * An implementation of the {@link ConfigurationProperties} service API.
- * This implementation is intended to be used as an OSGI Declarative Service with single
+ * This implementation is intended to be used as an OSGI Declarative Service with a single
  * DS property value defined: {@code props.file.propertyName}. This parameter should be set
- * to a system or OSGI framework property name. The value of that property should be specified
+ * to a system or OSGI framework property name or system environment variable name.
+ * If specified for a property, the value should be provided
  * in the launch configuration for the application and be application-specific.
  * <p>
  * For example, in an application, add an OSGI DS config which adds a property:
@@ -109,21 +110,37 @@ public class SimpleFileConfigurationProperties implements ConfigurationPropertie
    {
       try
       {
-         BundleContext bc = Activator.getDefault().getContext();
-         String propsFileStr = bc.getProperty(filePropName);
+         String source = null;
+         String propsFileStr = null;
+         Activator activator = Activator.getDefault();
+         if (activator != null)
+         {
+            BundleContext bc = activator.getContext();
+            if (bc != null)
+            {
+               propsFileStr = bc.getProperty(filePropName);
+               source = "System Property";
+            }
+         }
          if (propsFileStr == null)
-            throw new IllegalStateException("Value of '"+filePropName+"' was ["+propsFileStr+"]");
+         {
+            propsFileStr = System.getenv(filePropName);
+            source = "Environment Variable";
+         }
+
+         if (propsFileStr == null)
+            throw new IllegalStateException("Failed to load properties specified by '"+filePropName+"'");
 
          Path p = Paths.get(propsFileStr);
          if (!Files.exists(p))
-            throw new IllegalStateException("File not found [" + p + "]");
+            throw new IllegalStateException("Failed to load properties specified by "+source+" '"+filePropName+"': File not found [" + p + "]");
 
          Properties props = loadProperties(p);
          synchronized (this)
          {
             propsFile = p;
             allProps = props;
-            debug.log(Level.INFO, "Loaded ("+allProps.size()+") properties from " + propsFile);
+            debug.log(Level.INFO, "Loaded ("+allProps.size()+") properties via "+source+" '"+filePropName+"' from " + propsFile);
          }
       }
       catch (Exception e)
@@ -231,7 +248,7 @@ public class SimpleFileConfigurationProperties implements ConfigurationPropertie
 
    private Properties loadProperties(Path filePath) throws Exception
    {
-      debug.info("Loading properties file from: " + filePath);
+      debug.fine("Loading properties file from: " + filePath);
 
       Properties props = new Properties();
       try (InputStream str = Files.newInputStream(filePath))

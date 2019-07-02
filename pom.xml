@@ -32,14 +32,13 @@
   
   <properties>
     <tycho-groupid>org.eclipse.tycho</tycho-groupid>
-    <tycho-version>0.25.0</tycho-version>
+    <tycho-version>1.3.0</tycho-version>
     <tycho-extras-version>${tycho-version}</tycho-extras-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <maven-plugins-groupid>org.apache.maven.plugins</maven-plugins-groupid>
     <maven-antrun-version>1.7</maven-antrun-version> 
     <assembly-version>2.4</assembly-version>
-    <repo-base-url>https://build.citd.tamu.edu/hudson/job</repo-base-url>
   </properties>
   
   <modules>
@@ -54,7 +53,7 @@
     <repository>
       <id>Eclipse Platform</id>
       <layout>p2</layout>
-      <url>${repo-base-url}/Eclipse%20Repository%20Mirror/lastSuccessfulBuild/artifact/target/repository/</url>
+      <url>https://build.citd.tamu.edu/restricted/mirror.p2.eclipse-distro.oxygen/lastSuccessful/archive/releng/edu.tamu.tcat.mirror.eclipse.core.releng/target/repository/</url>
     </repository>
   </repositories>
 
